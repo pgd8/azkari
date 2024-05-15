@@ -29,16 +29,16 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           items: [
             BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home_outlined,
-                ),
-                label: "Home"),
-            BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage("assets/icons/quran.png")),
                 label: "Quran"),
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage("assets/icons/sebha.png")),
                 label: "Sebha"),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.home_outlined,
+                ),
+                label: "Home"),
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage("assets/icons/dua.png")),
                 label: "dua"),
@@ -49,9 +49,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> tabs = [
-    Container(),
     QuranTab(),
     SebhaTab(),
+    Container(),
     Container(),
   ];
 }

@@ -14,32 +14,74 @@ class SebhaTab extends StatefulWidget {
 
 class _SebhaTabState extends State<SebhaTab> {
   int counter = 0;
+  String title = "Start";
+
   @override
   Widget build(BuildContext context) {
-    String title = AppLocalizations.of(context)!.subhanAllah;
     ScreenUtil.init(context, designSize: const Size(420, 870));
-    return Column(
-      children: [
-        Center(
-          child:TabLogo("assets/images/sebhaLogo.jpg")
-        ),
-        Container(
-          margin: const EdgeInsets.symmetric(vertical: 10),
-          padding: const EdgeInsets.all(25),
-          decoration: BoxDecoration(
-              color: MyTheme.primaryColor,
-              borderRadius: BorderRadius.circular(30.r)),
-          child: Text("$counter"),
-        ),
-        ElevatedButton(
-            onPressed: () {
-              setState(() {});
-            },
-            child: Text(
-              title,
-              style: TextStyle(color: Colors.white, fontSize: 20.sp),
-            ))
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Column(
+        children: [
+          Center(child: TabLogo("assets/images/sebhaLogo.jpg")),
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 10),
+            padding: const EdgeInsets.all(25),
+            decoration: BoxDecoration(
+                color: MyTheme.primaryColor,
+                borderRadius: BorderRadius.circular(30.r)),
+            child: Text("$counter"),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 0.03.sh),
+            child: ElevatedButton(
+                onPressed: () {
+                  if (title == "Start" && counter >= 0 && counter < 32 ||
+                      title == AppLocalizations.of(context)!.subhanAllah &&
+                          counter <= 32) {
+                    title = AppLocalizations.of(context)!.subhanAllah;
+                    if (counter == 32) {
+                      title = AppLocalizations.of(context)!.alhamdulellah;
+                      counter = 0;
+                    }
+                  }
+                  if (title == AppLocalizations.of(context)!.alhamdulellah &&
+                      counter >= 0 &&
+                      counter <= 32) {
+                    if (counter == 32) {
+                      title = AppLocalizations.of(context)!.laElahElaAllah;
+                      counter = 0;
+                    }
+                  }
+                  if (title == AppLocalizations.of(context)!.laElahElaAllah &&
+                      counter >= 0 &&
+                      counter <= 32) {
+                    if (counter == 32) {
+                      title = AppLocalizations.of(context)!.allahakbar;
+                      counter = 0;
+                    }
+                  }
+                  if (title == AppLocalizations.of(context)!.allahakbar &&
+                      counter >= 0 &&
+                      counter <= 32) {
+                    if (counter == 32) {
+                      title = AppLocalizations.of(context)!.subhanAllah;
+                      counter = 0;
+                    }
+                  }
+                  counter++;
+                  setState(() {});
+                },
+                child: Text(
+                  title,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.sp,
+                      fontFamily: "Cairo"),
+                )),
+          )
+        ],
+      ),
     );
   }
 }
